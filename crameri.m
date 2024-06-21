@@ -63,10 +63,10 @@ if nargin==0
    figure('menubar','none','numbertitle','off','Name','crameri options:')
    
    if license('test','image_toolbox')
-      imshow(imread('crameri7.0.png')); 
+      imshow(imread('crameri8.0.png')); 
    else
       axes('pos',[0 0 1 1])
-      image(imread('crameri7.0.png')); 
+      image(imread('crameri8.0.png')); 
       axis image off
    end
    
@@ -124,7 +124,7 @@ end
 %% Load RGB values and interpolate to NLevels: 
 
 try
-   S = load('CrameriColourMaps7.0.mat',ColormapName); 
+   S = load('CrameriColourMaps8.0.mat',ColormapName); 
    cmap = S.(ColormapName); 
 catch
    error(['Unknown colormap name ''',ColormapName,'''. Try typing crameri with no inputs to check the options and try again.'])
@@ -171,3 +171,19 @@ end
 % 
 % clear f k 
 % save('CrameriColourMaps7.0.mat')
+
+% Code used to generate the 8.0 map:
+% Unzip the latest folder, navigate to that filepath, and run this.
+%
+% clearvars
+% c = (dir('**/*.mat')); % get all .mat files (avoids the need to update f ^above)
+% for f = 1:numel(c)
+%     if contains(c(f).name,{'0','5','S'}) % To only load the 256x3 .mat files
+%         continue
+%     else
+%         load(fullfile(c(f).folder,c(f).name));
+%     end
+% end
+% 
+% clear f c
+% save('CrameriColourMaps8.0.mat')
